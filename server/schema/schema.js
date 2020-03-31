@@ -136,6 +136,18 @@ const Mutation = new GraphQLObjectType({
                 })
                 return book.save()
             }
+        },
+        addEra: {
+            type: EraType,
+            args: {
+                name: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parent, args){
+                let era = new Era({
+                    name: args.name
+                })
+                return era.save()
+            }
         }
     }
 })
