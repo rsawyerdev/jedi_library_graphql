@@ -5,7 +5,8 @@ const bookSchema = new Schema({
     title: String,
     eraId: String,
     authorId: String,
-    bookStatusId: String
+    bookStatusId: String,
+    epochTimeId: String
 })
 
 module.exports = mongoose.model('Book', bookSchema)
