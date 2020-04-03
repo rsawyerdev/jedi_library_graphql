@@ -4,6 +4,7 @@ const Book = require('../models/book')
 const Author = require('../models/author')
 const Era = require('../models/era')
 const BookStatus = require('../models/bookStatus')
+const EpochTime = require('../models/epochTime')
 
 const { 
     GraphQLObjectType, 
@@ -35,6 +36,12 @@ const BookType = new GraphQLObjectType({
             type:  BookStatusType,
             resolve(parent, args){
                 return BookStatus.findById(parent.bookStatusId)
+            }
+        },
+        epochTime: {
+            type: EpochTimeType,
+            resolve(parent, args){
+                return EpochTime.findById(parent.epochTimeId)
             }
         },
     })
@@ -82,6 +89,21 @@ const BookStatusType = new GraphQLObjectType({
     })
 })
 
+const EpochTimeType = new GraphQLObjectType({
+    name: 'EpochTime',
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        book: {
+            type: new GraphQLList(BookType),
+            resolve(parent, args){
+                return Book.find({ epochTimeId: parent.id })
+            }
+        }
+    })
+})
+
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -113,6 +135,13 @@ const RootQuery = new GraphQLObjectType({
                 return BookStatus.findById(args.id)
             }
         },
+        epochTime: {
+            type: EpochTimeType,
+            args: { id: { type: GraphQLID } },
+            resolve(parent, args){
+                return EpochTime.findById(args.id)
+            }
+        },
         books: {
             type: new GraphQLList(BookType),
             resolve(parent, args){
@@ -135,6 +164,12 @@ const RootQuery = new GraphQLObjectType({
             type: new GraphQLList(BookStatusType),
             resolve(parent, args){
                 return BookStatus.find({})
+            }
+        },
+        epochTimes: {
+            type: new GraphQLList(EpochTimeType),
+            resolve(parent, args){
+                return EpochTime.find({})
             }
         }
     }
@@ -161,14 +196,16 @@ const Mutation = new GraphQLObjectType({
                 title: { type: new GraphQLNonNull(GraphQLString) },
                 eraId: { type: new GraphQLNonNull(GraphQLString) },
                 authorId: { type: new GraphQLNonNull(GraphQLID) },
-                bookStatus: { type: new GraphQLNonNull(GraphQLString) }
+                bookStatusId: { type: new GraphQLNonNull(GraphQLString) },
+                epochTimeId: { type: new GraphQLNonNull(GraphQLString) }
             },
             resolve(parent, args){
                 let book = new Book({
                     title: args.title,
                     eraId: args.eraId,
                     authorId: args.authorId,
-                    bookStatus: args.bookStatusId
+                    bookStatusId: args.bookStatusId,
+                    epochTimeId: args.epochTimeId
                 })
                 return book.save()
             }
