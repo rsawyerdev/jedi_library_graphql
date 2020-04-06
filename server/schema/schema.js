@@ -10,10 +10,11 @@ const Series = require('../models/series')
 const { 
     GraphQLObjectType, 
     GraphQLString, 
+    GraphQLInt,
     GraphQLSchema, 
     GraphQLID,
     GraphQLList,
-    GraphQLNonNull 
+    GraphQLNonNull, 
 } = graphql
 
 const BookType = new GraphQLObjectType({
@@ -21,6 +22,12 @@ const BookType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLID },
         title: { type: GraphQLString },
+        releaseDate: { type: GraphQLString },
+        imageId: { type: GraphQLString },
+        summary: { type: GraphQLString },
+        pages: { type: GraphQLInt },
+        isbn: { type: GraphQLString },
+        timeLine: { type: GraphQLList(GraphQLInt) },
         era: { 
             type: EraType,
             resolve(parent, args){
@@ -233,7 +240,13 @@ const Mutation = new GraphQLObjectType({
                 authorId: { type: new GraphQLNonNull(GraphQLID) },
                 bookStatusId: { type: new GraphQLNonNull(GraphQLString) },
                 epochTimeId: { type: new GraphQLNonNull(GraphQLString) },
-                seriesId: { type: GraphQLString }
+                seriesId: { type: GraphQLString },
+                releaseDate: { type: new GraphQLNonNull(GraphQLString) },
+                imageId: { type: new GraphQLNonNull(GraphQLString) },
+                summary: { type: new GraphQLNonNull(GraphQLString) },
+                pages: { type: new GraphQLNonNull(GraphQLInt) },
+                isbn: { type: new GraphQLNonNull(GraphQLString) },
+                timeLine: { type: new GraphQLNonNull(GraphQLInt) }
             },
             resolve(parent, args){
                 let book = new Book({
@@ -242,7 +255,13 @@ const Mutation = new GraphQLObjectType({
                     authorId: args.authorId,
                     bookStatusId: args.bookStatusId,
                     epochTimeId: args.epochTimeId,
-                    seriesId: args.seriesId
+                    seriesId: args.seriesId,
+                    releaseDate: args.releaseDate,
+                    imageId: args.imageId,
+                    summary: args.summary,
+                    pages: args.pages,
+                    isbn: args.isbn,
+                    timeLine: args.timeLine
                 })
                 return book.save()
             }
