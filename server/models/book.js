@@ -7,7 +7,13 @@ const bookSchema = new Schema({
     authorId: String,
     bookStatusId: String,
     epochTimeId: String,
-    seriesId: String
+    seriesId: String,
+    releaseDate: String,
+    imageId: String,
+    summary: String,
+    pages: Number,
+    isbn: String,
+    timeLine: Array
 })
 
 module.exports = mongoose.model('Book', bookSchema)
