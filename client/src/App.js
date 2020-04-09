@@ -1,4 +1,14 @@
-import React from 'react';
+import React from 'react'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
+
+import BookList from './components/BookList'
+
+// apollo client setup
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql'
+})
+
 
 const styles = {
   container: {
@@ -10,10 +20,12 @@ const styles = {
 
 function App() {
   return (
-    <div style={styles.container}>
-      <h1>Jedi Reading List</h1>
-      
-    </div>
+    <ApolloProvider client={client}>
+      <div style={styles.container}>
+        <h1>Jedi Reading List</h1>
+        <BookList />
+      </div>
+    </ApolloProvider>
   );
 }
 
