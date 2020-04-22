@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import BookList from './components/BookList'
+import Main from './containers/Main'
 
 // apollo client setup
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql'
 })
+
+
 
 
 const styles = {
@@ -18,15 +21,27 @@ const styles = {
   }
 }
 
-function App() {
+class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      
+    }
+  }
+
+
+
+  render(){
+
   return (
     <ApolloProvider client={client}>
       <div style={styles.container}>
         <h1>Jedi Reading List</h1>
-        <BookList />
+        <Main />
       </div>
     </ApolloProvider>
   );
-}
+}}
 
 export default App;

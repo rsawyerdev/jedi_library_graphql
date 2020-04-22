@@ -8,6 +8,7 @@ const getBooksQuery = gql `
         books {
             title
             id
+            imageId
         }
     }
 `
@@ -20,6 +21,8 @@ const styles = {
   }
 }
 
+
+
 class BookList extends Component {
 
     displayBooks(){
@@ -28,9 +31,11 @@ class BookList extends Component {
             return( <div>Loading Books...</div>)
         } else {
             return data.books.map(book => {
+              
                 return(
                 <li key ={book.id}>{ book.title }</li>
                 )
+              
             })
         }
     }
