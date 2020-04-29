@@ -4,6 +4,10 @@ import { ApolloProvider } from 'react-apollo'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Main from './containers/Main'
+import BookList from './containers/BookList'
+import Discussions from './containers/Discussions'
+import InsideLook from './containers/InsideLook'
+import Map from './containers/Map'
 
 // apollo client setup
 const client = new ApolloClient({
@@ -17,7 +21,8 @@ const styles = {
   container: {
     width: '100%',
     height: 1000,
-    backgroundColor: 'lightgrey'
+    backgroundColor: 'lightgrey',
+    flexDirection: 'row'
   }
 }
 
@@ -36,10 +41,13 @@ class App extends Component {
 
   return (
     <ApolloProvider client={client}>
-      <div style={styles.container}>
-        <h1>Jedi Reading List</h1>
-        <Main />
-      </div>
+      <BrowserRouter>
+      <Route path='/' exact component={Main}/>
+      <Route path = '/booklist' exact component={BookList} />
+      <Route path = '/discussions' exact component={Discussions} />
+      <Route path = '/insidelook' exact component={InsideLook} />
+      <Route path = '/map' exact component={Map} />
+      </BrowserRouter>
     </ApolloProvider>
   );
 }}
