@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
+import { Link } from 'react-router-dom'
 
 
 const getBooksQuery = gql `
@@ -18,6 +19,9 @@ const styles = {
     width: '100%',
     height: 1000,
     backgroundColor: 'lightgrey'
+  },
+  list: {
+    listStyleType: 'none'
   }
 }
 
@@ -31,10 +35,17 @@ class BookList extends Component {
             return( <div>Loading Books...</div>)
         } else {
             return data.books.map(book => {
-              
+              var image = book.imageId + '.png'
+              if(image){
                 return(
-                <li key ={book.id}>{ book.title }</li>
+                <li key ={book.id}>
+                  <Link to={`/booklist/${book.id}`} >
+                  <img src={image} />
+                  </Link>
+                </li>
                 )
+
+              }
               
             })
         }
@@ -46,10 +57,9 @@ class BookList extends Component {
       <ul style={styles.list}>
           {this.displayBooks()}
       </ul>
-      
     </div>
-  );
+  )
 }
 }
 
-export default graphql(getBooksQuery)(BookList);
+export default graphql(getBooksQuery)(BookList)

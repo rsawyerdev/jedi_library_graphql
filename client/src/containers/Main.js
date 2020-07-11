@@ -4,14 +4,32 @@ import { Link } from 'react-router-dom'
 const styles = {
   container: {
     width: '100%',
-    height: 1000,
+    height: 800,
     backgroundColor: 'lightgrey',
     display: 'flex',
-    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
-    textDecoration: 'none'
+    backgroundImage: "url('/jedi_reading.jpg')",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
+    
+  },
+  linkContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: 500,
+    justifyContent: 'space-between',
+    
+  },
+  link: {
+    textDecoration: 'none',
+    borderStyle: 'solid',
+    borderColor: 'black',
+    backgroundColor: 'blue',
+    borderRadius: 15,
+    height: 20,
+    width: 100,
+    textAlign: 'center'  
   }
 }
 
@@ -29,11 +47,15 @@ class Main extends Component {
 
   return (
       <div style={styles.container}>
-        <Link to='/booklist' style={{textDecoration:'none'}}> Book List </Link>
-        <Link to='/discussions' style={{textDecoration:'none'}}> Discussions </Link>
-        <Link to='/insidelook' style={{textDecoration:'none'}}> Inside Look </Link>
-        <Link to='/map' style={{textDecoration:'none'}}> Map </Link>
-        
+        <div>
+          <h1>Jedi Library</h1>
+        </div>
+        <div style={styles.linkContainer}>
+        <Link to='/booklist' style={styles.link}> Book List </Link>
+        <Link to='/discussions' style={styles.link}> Discussions </Link>
+        <Link to='/insidelook' style={styles.link}> Inside Look </Link>
+        <Link to='/map' style={styles.link}> Map </Link>
+        </div>
         
       </div>
   );

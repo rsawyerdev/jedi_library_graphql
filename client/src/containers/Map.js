@@ -18,6 +18,10 @@ const styles = {
     width: '100%',
     height: 1000,
     backgroundColor: 'lightgrey'
+  },
+  mapImage: {
+    height: '100%',
+    width: '100%'
   }
 }
 
@@ -28,7 +32,7 @@ class Map extends Component {
     render(){
   return (
     <div style={styles.container}>
-      Map
+      <img src= "Star_Wars_Galaxy_Map.jpg" style={styles.mapImage}/>
       
     </div>
   );

@@ -1,30 +1,20 @@
 import React, { Component } from 'react'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import Main from './containers/Main'
 import BookList from './containers/BookList'
 import Discussions from './containers/Discussions'
 import InsideLook from './containers/InsideLook'
 import Map from './containers/Map'
+import Book from './containers/BookDetails'
+import BookDetails from './containers/BookDetails'
 
 // apollo client setup
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql'
 })
-
-
-
-
-const styles = {
-  container: {
-    width: '100%',
-    height: 1000,
-    backgroundColor: 'lightgrey',
-    flexDirection: 'row'
-  }
-}
 
 class App extends Component {
 
@@ -44,9 +34,11 @@ class App extends Component {
       <BrowserRouter>
       <Route path='/' exact component={Main}/>
       <Route path = '/booklist' exact component={BookList} />
+      <Route path = '/booklist/:id' exact component={BookDetails}   />
       <Route path = '/discussions' exact component={Discussions} />
       <Route path = '/insidelook' exact component={InsideLook} />
       <Route path = '/map' exact component={Map} />
+      <Route path = '/booklist/book' exact component={Book} />
       </BrowserRouter>
     </ApolloProvider>
   );
