@@ -32,7 +32,7 @@ class Map extends Component {
     render(){
   return (
     <div style={styles.container}>
-      <img src= "Star_Wars_Galaxy_Map.jpg" style={styles.mapImage}/>
+      <img src= "Star_Wars_Galaxy_Map.jpg" alt= "Star Wars Galaxy Map" style={styles.mapImage}/>
       
     </div>
   );
