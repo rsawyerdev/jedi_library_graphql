@@ -24,23 +24,21 @@ const getBooksQuery = gql `
 const styles = {
   container: {
     width: '100%',
-    height: '100%',
+    height: 1000,
     backgroundColor: 'lightgrey',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    borderStyle: 'solid',
-    borderColor: 'red'
   },
-  list: {
+  bookRow: {
     display: 'flex',
-    flexDirection: 'row',
-    borderStyle: 'solid',
-    borderColor: 'blue'
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginTop: 20
   },
-  bookImage: {
-    height: 250,
-    width: 150,
+  book: {
+    height: 300,
+    width: 200,
   }
 }
 
@@ -58,7 +56,7 @@ class BookList extends Component {
             return data.books.map(book => {
               if(book){
                 return(
-                <div key ={book.id} style={styles.list}>
+                <div key ={book.id} style={styles.book}>
                   <Link to={`/booklist/${book.id}`} >
                     <BookCover book={book}/>
                   </Link>
@@ -83,7 +81,7 @@ class BookList extends Component {
       options={options} 
       defaultOption="All Books"
       select={options}/>
-      <div>
+      <div style={styles.bookRow}>
           {this.displayBooks()}
           </div>
     </div>
