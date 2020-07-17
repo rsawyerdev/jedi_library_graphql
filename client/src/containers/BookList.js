@@ -57,9 +57,9 @@ class BookList extends Component {
               if(book){
                 return(
                 <div key ={book.id} style={styles.book}>
-                  <Link to={`/booklist/${book.id}`} >
-                    <BookCover book={book}/>
-                  </Link>
+                  
+                  <BookTile book={book}/>
+                  
                 </div>
                 )
 
