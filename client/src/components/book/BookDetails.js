@@ -10,7 +10,7 @@ class BookDetails extends Component {
             return(
                 <div>
                     <h2>{ book.title }</h2>
-                    <p>All books by this author:</p>
+            <h3>{ book.summary }</h3>
                 </div>
             );
         } 

@@ -43,7 +43,7 @@ export default class BookTile extends React.Component {
                 height: 100,
                 perspective: 1000,
                 display: 'block',
-                position: 'relative',
+                position: 'absolute',
                 float: 'left',
                 marginRight: 5,
                 zIndex: 1
@@ -53,25 +53,25 @@ export default class BookTile extends React.Component {
                 height: 100,
                 perspective: 1000,
                 display: 'block',
-                position: 'relative',
+                position: 'absolute',
                 float: 'left',
                 marginRight: 5,
                 zIndex: 10000,
             },
             tile: {
                 height: '100%',
-                position: 'relative',
+                position: 'absolute',
                 transition: 'all 1s ease-in-out',
                 width: '100%',
                 transformStyle: 'preserve-3d',
             },
             tileFlip: {
                 height: '100%',
-                position: 'relative',
+                position: 'absolute',
                 transition: 'all 1s ease-in-out',
                 width: '100%',
                 transformStyle: 'preserve-3d',
-                transform: 'rotateY(180deg)'
+                transform: 'scale3d(4,4,4)'
             },
             tileFront: {
                 transition: 'all 1s ease-in-out',
@@ -80,19 +80,27 @@ export default class BookTile extends React.Component {
             tileFrontFlip: {
                 transition: 'all 1s ease-in-out',
                 backfaceVisibility: 'hidden',
-                transform: 'scale3d(4,4,4)',
+                transform: 'rotateY(180deg)',
             },
             tileBack: {
-                transform: 'rotateY(180deg)',
                 backfaceVisibility: 'hidden',
+                position: 'absolute',
+                top: 5,
+                transformStyle: 'preserve-3d',
+                transform: 'rotateY(180deg)',
+                transition: 'all 1s ease-in-out',
+
             },
             tileBackFlip: {
-                transform: 'rotateY(180deg)',
+                transform: 'rotateY(360deg)',
+                transition: 'all 1s ease-in-out',
                 backgroundColor: 'white',
-                transform: 'rotateY(180deg)',
                 backfaceVisibility: 'hidden',
+                position: 'absolute',
+                top: 5,
+                height: 100,
+                width: 100,
             }
-
         }
 
         return (
@@ -101,9 +109,9 @@ export default class BookTile extends React.Component {
                     <div style={this.state.flipped ? styles.tileFrontFlip : styles.tileFront}>
                         <BookCover book={this.props.book} />
                     </div>
-                    <div style={this.state.flipped ? styles.tileBackFlip : styles.tileBack}>
-                        <BookDetails book={this.props.book} />
-                    </div>
+                        <div style={this.state.flipped ? styles.tileBackFlip : styles.tileBack}>
+                            <BookDetails book={this.props.book} />
+                        </div>
                 </div>
             </div>
         );

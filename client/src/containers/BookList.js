@@ -13,6 +13,7 @@ const getBooksQuery = gql `
             title
             id
             imageId
+            summary
             bookStatus{
               id
               name
