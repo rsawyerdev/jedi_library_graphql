@@ -58,7 +58,7 @@ class Main extends Component {
         </div>
         
       </div>
-  );
+  )
 }}
 
-export default Main;
+export default Main

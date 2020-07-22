@@ -1,5 +1,6 @@
 import React from 'react'
-import BookDetails from '../components/book/BookDetails'
+
+import BookBack from '../components/book/BookBack'
 import BookCover from '../components/book/BookCover'
 
 
@@ -36,7 +37,6 @@ export default class BookTile extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         const styles = {
             container: {
                 width: 100,
@@ -110,7 +110,7 @@ export default class BookTile extends React.Component {
                         <BookCover book={this.props.book} />
                     </div>
                         <div style={this.state.flipped ? styles.tileBackFlip : styles.tileBack}>
-                            <BookDetails book={this.props.book} />
+                            <BookBack book={this.props.book} />
                         </div>
                 </div>
             </div>

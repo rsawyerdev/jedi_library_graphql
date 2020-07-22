@@ -49,8 +49,6 @@ class BookList extends Component {
 
     displayBooks(){
         var data = this.props.data
-        var books = this.props.data.books
-        console.log(books)
         if(data.loading){
             return( <div>Loading Books...</div>)
         } else {
