@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import BookDetails from './BookDetails'
 
 
 
@@ -13,7 +12,7 @@ class BookBack extends Component {
                     <h2>{ book.title }</h2>
                     <p>{ book.summary }</p>
                     <p>{ book.id }</p>
-                    <Link to='/booklist/:id'> See ALL </Link>
+                    <Link to={`/booklist/${book.id}`}> See ALL </Link>
 
                 </div>
             );

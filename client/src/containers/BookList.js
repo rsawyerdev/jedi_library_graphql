@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 import Dropdown from '../components/global/Dropdown'
 import BookTile from './BookTile'
-import BookCover from '../components/book/BookCover'
 
 const getBooksQuery = gql `
     {

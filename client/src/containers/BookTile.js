@@ -107,7 +107,7 @@ export default class BookTile extends React.Component {
             <div onClick={this.flip} style={this.state.flipping ? styles.containerFlip : styles.container} ref={c => this.container = c}>
                 <div style={this.state.flipped ? styles.tileFlip : styles.tile}>
                     <div style={this.state.flipped ? styles.tileFrontFlip : styles.tileFront}>
-                        <BookCover book={this.props.book} />
+                        <BookCover />
                     </div>
                         <div style={this.state.flipped ? styles.tileBackFlip : styles.tileBack}>
                             <BookBack book={this.props.book} />

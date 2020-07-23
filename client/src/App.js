@@ -37,7 +37,7 @@ class App extends Component {
       <Route path = '/discussions' exact component={Discussions} />
       <Route path = '/insidelook' exact component={InsideLook} />
       <Route path = '/map' exact component={Map} />
-      <Route path = '/book/:id' exact component={BookCover} />
+      <Route path = '/booklist/:bookId' exact component={BookDetails} />
       </BrowserRouter>
     </ApolloProvider>
   );

@@ -12,7 +12,6 @@ const {
     GraphQLString, 
     GraphQLInt,
     GraphQLSchema, 
-    GraphQLID,
     GraphQLList,
     GraphQLNonNull, 
 } = graphql
@@ -20,7 +19,7 @@ const {
 const BookType = new GraphQLObjectType({
     name: 'Book',
     fields: () => ({
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         title: { type: GraphQLString },
         releaseDate: { type: GraphQLString },
         imageId: { type: GraphQLString },
@@ -64,7 +63,7 @@ const BookType = new GraphQLObjectType({
 const AuthorType = new GraphQLObjectType({
     name: 'Author',
     fields: () => ({
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         name: { type: GraphQLString },
         book: {
             type: new GraphQLList(BookType),
@@ -78,7 +77,7 @@ const AuthorType = new GraphQLObjectType({
 const EraType = new GraphQLObjectType({
     name: 'Era',
     fields: () => ({
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         name: { type: GraphQLString },
         book: {
             type: new GraphQLList(BookType),
@@ -92,7 +91,7 @@ const EraType = new GraphQLObjectType({
 const BookStatusType = new GraphQLObjectType({
     name: 'BookStatus',
     fields: () => ({
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         name: { type: GraphQLString },
         book: {
             type: new GraphQLList(BookType),
@@ -106,7 +105,7 @@ const BookStatusType = new GraphQLObjectType({
 const EpochTimeType = new GraphQLObjectType({
     name: 'EpochTime',
     fields: () => ({
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         name: { type: GraphQLString },
         description: { type: GraphQLString },
         book: {
@@ -121,7 +120,7 @@ const EpochTimeType = new GraphQLObjectType({
 const SeriesType = new GraphQLObjectType({
     name: 'Series',
     fields: () => ({
-        id: { type: GraphQLID }, 
+        id: { type: GraphQLString }, 
         name: { type: GraphQLString },
         description: { type: GraphQLString },
         book: {
@@ -138,42 +137,42 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         book: {
             type: BookType,
-            args: { id: { type: GraphQLID } },
+            args: { id: { type: GraphQLString } },
             resolve(parent, args){
                 return Book.findById(args.id)
             }
         },
         author: {
             type: AuthorType,
-            args: { id: { type: GraphQLID } },
+            args: { id: { type: GraphQLString } },
             resolve(parent, args){
                return Author.findById(args.id)
             }
         },
         era: {
             type: EraType,
-            args: { id: { type: GraphQLID } },
+            args: { id: { type: GraphQLString } },
             resolve(parent, args){
                 return Era.findById(args.id)
             }
         },
         bookStatus: {
             type: BookStatusType,
-            args: { id: { type: GraphQLID } },
+            args: { id: { type: GraphQLString } },
             resolve(parent, args){
                 return BookStatus.findById(args.id)
             }
         },
         epochTime: {
             type: EpochTimeType,
-            args: { id: { type: GraphQLID } },
+            args: { id: { type: GraphQLString } },
             resolve(parent, args){
                 return EpochTime.findById(args.id)
             }
         },
         serie: {
             type: SeriesType,
-            args: { id: { type: GraphQLID } },
+            args: { id: { type: GraphQLString } },
             resolve(parent, args){
                 return Series.findById(args.id)
             }
@@ -237,7 +236,7 @@ const Mutation = new GraphQLObjectType({
             args: {
                 title: { type: new GraphQLNonNull(GraphQLString) },
                 eraId: { type: new GraphQLNonNull(GraphQLString) },
-                authorId: { type: new GraphQLNonNull(GraphQLID) },
+                authorId: { type: new GraphQLNonNull(GraphQLString) },
                 bookStatusId: { type: new GraphQLNonNull(GraphQLString) },
                 epochTimeId: { type: new GraphQLNonNull(GraphQLString) },
                 seriesId: { type: GraphQLString },
