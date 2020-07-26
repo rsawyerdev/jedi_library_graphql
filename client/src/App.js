@@ -9,7 +9,6 @@ import Discussions from './containers/Discussions'
 import InsideLook from './containers/InsideLook'
 import Map from './containers/Map'
 import BookDetails from './components/book/BookDetails'
-import BookCover from './components/book/BookCover'
 
 // apollo client setup
 const client = new ApolloClient({

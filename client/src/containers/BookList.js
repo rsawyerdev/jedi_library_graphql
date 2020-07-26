@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import { Link } from 'react-router-dom'
 
 import Dropdown from '../components/global/Dropdown'
 import BookTile from './BookTile'
@@ -56,7 +55,7 @@ class BookList extends Component {
                 return(
                 <div key ={book.id} style={styles.book}>
                   
-                  <BookTile book={book}/>
+                  <BookTile id={book.id}/>
                   
                 </div>
                 )

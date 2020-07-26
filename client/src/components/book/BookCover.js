@@ -1,68 +1,55 @@
 import React, { Component } from 'react'
-import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
+import { gql } from 'apollo-boost'
 
-const getBooksQuery = gql `
-    {
-        books {
-            title
+const getBookCover = gql `
+    query GetBook($id: String){
+        book(id: $id) {
             id
             imageId
-            summary
-            bookStatus{
-              id
-              name
-            }
+            title
         }
     }
+
 `
 
-
 const styles = {
-
-    bookImage: {
+    bookCover: {
         height: 250,
         width: 150,
-        resizeMode: 'contain'
-    },
-    container: {
-        display: 'flex',
-        flexDirection: 'row'
     }
 }
 
 class BookCover extends Component {
-
-    displayBookCover(){
-        var data = this.props.data
-        if(data.loading){
+    displayBookDetails(){
+        const { book } = this.props.data
+        if(book){
+            const image = book.imageId + '.png'
             return(
-                <div>Loading Book Covers</div>
-            )
+                <div>
+                    <img src={image} alt={book.title} style={styles.bookCover}/>     
+                </div>
+            );
         } else {
-            return(
-                data.books.map(book => {
-                    if(book){
-                        let image = book.imageId + '.png'
-                        return(
-                            <div key={book.id}>
-                                <img src={image}  alt={book.title} style={styles.bookImage} />
-                            </div>
-                        )
-                    }
-                })
-            )
+            return( <div>No book selected...</div> );
         }
     }
-
-    render() {
-        
-        return (
+    render(){
+        console.log("BC", this.props)
+        return(
             <div >
-                {this.displayBookCover()}
+                { this.displayBookDetails() }
             </div>
-        )
+        );
     }
 }
 
-export default graphql(getBooksQuery)(BookCover)
+export default graphql(getBookCover, {
+    options: (props) => {
+        return {
+            variables: {
+                id: props.id
+            }
+        }
+    }
+})(BookCover)
