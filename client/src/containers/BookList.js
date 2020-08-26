@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import { Link } from 'react-router-dom'
 
 import Dropdown from '../components/global/Dropdown'
 import BookTile from './BookTile'
-import BookCover from '../components/book/BookCover'
 
-const getBooksQuery = gql `
+const getBooksQuery = gql`
     {
         books {
             title
@@ -25,7 +23,7 @@ const getBooksQuery = gql `
 const styles = {
   container: {
     width: '100%',
-    height: 1000,
+    height: '100%',
     backgroundColor: 'lightgrey',
     display: 'flex',
     flexDirection: 'column',
@@ -47,47 +45,41 @@ const styles = {
 
 class BookList extends Component {
 
-    displayBooks(){
-        var data = this.props.data
-        var books = this.props.data.books
-        console.log(books)
-        if(data.loading){
-            return( <div>Loading Books...</div>)
-        } else {
-            return data.books.map(book => {
-              if(book){
-                return(
-                <div key ={book.id} style={styles.book}>
-                  
-                  <BookTile book={book}/>
-                  
-                </div>
-                )
-
-              }
-              
-            })
+  displayBooks() {
+    var data = this.props.data
+    if (data.loading) {
+      return (<div>Loading Books...</div>)
+    } else {
+      return data.books.map(book => {
+        if (book) {
+          return (
+            <div key={book.id} style={styles.book}>
+              <BookTile id={book.id} />
+            </div>
+          )
         }
+      })
     }
+  }
 
-    render(){
-      let options = [
-        {value : 'reading', text: 'Reading'},
-        {value: 'read', text: 'Read'}
-      ]
-  return (
-    <div style={styles.container}>
-      <Dropdown
-      onClick={() => console.log('dropdown')}
-      options={options} 
-      defaultOption="All Books"
-      select={options}/>
-      <div style={styles.bookRow}>
+  render() {
+    let options = [
+      { value: 'reading', text: 'Reading' },
+      { value: 'read', text: 'Read' }
+    ]
+    return (
+      <div style={styles.container}>
+        <Dropdown
+          onClick={() => console.log('dropdown')}
+          options={options}
+          defaultOption="All Books"
+          select={options} />
+        <div style={styles.bookRow}>
           {this.displayBooks()}
-          </div>
-    </div>
-  )
-}
+        </div>
+      </div>
+    )
+  }
 }
 
 export default graphql(getBooksQuery)(BookList)

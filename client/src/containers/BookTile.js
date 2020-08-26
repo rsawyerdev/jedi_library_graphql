@@ -1,5 +1,6 @@
 import React from 'react'
-import BookDetails from '../components/book/BookDetails'
+
+import BookBack from '../components/book/BookBack'
 import BookCover from '../components/book/BookCover'
 
 
@@ -35,8 +36,11 @@ export default class BookTile extends React.Component {
         }
     }
 
+    componentWillMount(){
+        delete this.doneFlipping
+    }
+
     render() {
-        console.log(this.props)
         const styles = {
             container: {
                 width: 100,
@@ -97,7 +101,7 @@ export default class BookTile extends React.Component {
                 backgroundColor: 'white',
                 backfaceVisibility: 'hidden',
                 position: 'absolute',
-                top: 5,
+                top: 20,
                 height: 100,
                 width: 100,
             }
@@ -107,10 +111,10 @@ export default class BookTile extends React.Component {
             <div onClick={this.flip} style={this.state.flipping ? styles.containerFlip : styles.container} ref={c => this.container = c}>
                 <div style={this.state.flipped ? styles.tileFlip : styles.tile}>
                     <div style={this.state.flipped ? styles.tileFrontFlip : styles.tileFront}>
-                        <BookCover book={this.props.book} />
+                        <BookCover id={this.props.id}/>
                     </div>
                         <div style={this.state.flipped ? styles.tileBackFlip : styles.tileBack}>
-                            <BookDetails book={this.props.book} />
+                            <BookBack id={this.props.id} />
                         </div>
                 </div>
             </div>
