@@ -45,8 +45,8 @@ class BookBack extends Component {
         } else {
             return( <div>No book selected...
                 
-            </div> );
-        }
+            </div> )
+        } 
     }
     render(){
         console.log("BB", this.props)

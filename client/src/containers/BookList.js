@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo'
 import Dropdown from '../components/global/Dropdown'
 import BookTile from './BookTile'
 
-const getBooksQuery = gql `
+const getBooksQuery = gql`
     {
         books {
             title
@@ -45,45 +45,41 @@ const styles = {
 
 class BookList extends Component {
 
-    displayBooks(){
-        var data = this.props.data
-        if(data.loading){
-            return( <div>Loading Books...</div>)
-        } else {
-            return data.books.map(book => {
-              if(book){
-                return(
-                <div key ={book.id} style={styles.book}>
-                  
-                  <BookTile id={book.id}/>
-                  
-                </div>
-                )
-
-              }
-              
-            })
+  displayBooks() {
+    var data = this.props.data
+    if (data.loading) {
+      return (<div>Loading Books...</div>)
+    } else {
+      return data.books.map(book => {
+        if (book) {
+          return (
+            <div key={book.id} style={styles.book}>
+              <BookTile id={book.id} />
+            </div>
+          )
         }
+      })
     }
+  }
 
-    render(){
-      let options = [
-        {value : 'reading', text: 'Reading'},
-        {value: 'read', text: 'Read'}
-      ]
-  return (
-    <div style={styles.container}>
-      <Dropdown
-      onClick={() => console.log('dropdown')}
-      options={options} 
-      defaultOption="All Books"
-      select={options}/>
-      <div style={styles.bookRow}>
+  render() {
+    let options = [
+      { value: 'reading', text: 'Reading' },
+      { value: 'read', text: 'Read' }
+    ]
+    return (
+      <div style={styles.container}>
+        <Dropdown
+          onClick={() => console.log('dropdown')}
+          options={options}
+          defaultOption="All Books"
+          select={options} />
+        <div style={styles.bookRow}>
           {this.displayBooks()}
-          </div>
-    </div>
-  )
-}
+        </div>
+      </div>
+    )
+  }
 }
 
 export default graphql(getBooksQuery)(BookList)

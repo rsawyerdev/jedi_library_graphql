@@ -57,8 +57,10 @@ class BookDetails extends Component {
                     <p>ISBN: { book.isbn }</p>
                     <p>Pages: {book.pages }</p>
                     <p>Release Date: { book.releaseDate }</p>
+                    <p>Era: { book.era.name }</p> 
+                    <p>Timeline: { book.timeLine}</p>
                     <p>Epoch Time: { book.epochTime.name }</p>
-                    <p>Era: { book.era.name }</p>                    
+                    <p>Series: {book.series.name}</p>                   
                     <p>Summary: { book.summary }</p>
                     <img src={image} style={styles.coverDetails} alt={book.title}/>
 
@@ -87,3 +89,5 @@ export default graphql(getBookDetails, {
         }
     }
 })(BookDetails)
+
+                   
