@@ -21,11 +21,22 @@ const getBookBack = gql `
 `
 
 const styles = {
+    container:{
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'white'
+    },
     title: {
         fontSize: 10
     },
     content: {
         fontSize: 8
+    },
+    contentSummary: {
+        fontSize: 8,
+        width: 100,
+        height: 50,
+        overflow: 'hidden',
     }
 }
 
@@ -34,9 +45,9 @@ class BookBack extends Component {
         const { book } = this.props.data
         if(book){
             return(
-                <div>
+                <div style={styles.container}>
                     <h2 style={styles.title}>{ book.title }</h2>
-                    <p style={styles.content}>{ book.summary }</p>
+                    <p style={styles.contentSummary}>{ book.summary }</p>
                     <p style={styles.content}>{ book.era.name }</p>
                     <p style={styles.content}>{ book.author.name }</p>
                     <Link to={`/booklist/${book.id}`}> See ALL </Link>                    

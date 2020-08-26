@@ -23,7 +23,7 @@ const getBooksQuery = gql`
 const styles = {
   container: {
     width: '100%',
-    height: 1000,
+    height: '100%',
     backgroundColor: 'lightgrey',
     display: 'flex',
     flexDirection: 'column',
