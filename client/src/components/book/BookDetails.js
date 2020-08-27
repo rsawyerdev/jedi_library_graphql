@@ -19,9 +19,6 @@ const getBookDetails = gql `
             epochTime {
                 name
             }
-            series {
-                name
-            }
             releaseDate
             imageId
             pages
@@ -60,7 +57,6 @@ class BookDetails extends Component {
                     <p>Era: { book.era.name }</p> 
                     <p>Timeline: { book.timeLine}</p>
                     <p>Epoch Time: { book.epochTime.name }</p>
-                    <p>Series: {book.series.name}</p>                   
                     <p>Summary: { book.summary }</p>
                     <img src={image} style={styles.coverDetails} alt={book.title}/>
 

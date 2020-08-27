@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import VBox from '../components/global/VBox'
+import HBox from '../components/global/HBox'
 
 const styles = {
   container: {
-    width: '100%',
-    height: 800,
-    backgroundColor: 'lightgrey',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundImage: "url('/characters.jpg')",
+    backgroundImage: "url('/jedi_reading.jpg')",
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
     
@@ -27,8 +23,8 @@ const styles = {
     borderColor: 'black',
     backgroundColor: 'blue',
     borderRadius: 15,
-    height: 20,
-    width: 100,
+    height: 25,
+    width: 200,
     textAlign: 'center'  
   }
 }
@@ -46,18 +42,18 @@ class Main extends Component {
 
 
   return (
-      <div style={styles.container}>
-        <div>
+      <VBox backgroundImage="url('/jedi_reading.jpg')"
+      backgroundRepeat="no-repeat"
+      backgroundSize="cover">
+        <HBox justifyContent="center">
           <h1>Jedi Library</h1>
-        </div>
+        </HBox>
         <div style={styles.linkContainer}>
-        <Link to='/bookslanding' style={styles.link}> Books </Link>
-        <Link to='/discussions' style={styles.link}> Discussions </Link>
-        <Link to='/insidelook' style={styles.link}> Inside Look </Link>
-        <Link to='/map' style={styles.link}> Map </Link>
+        <Link to='/booklist' style={styles.link}> Books By Reading Status </Link>
+        
         </div>
         
-      </div>
+      </VBox>
   )
 }}
 

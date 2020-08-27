@@ -27,7 +27,10 @@ export default class VBox extends Component {
             left: this.props.left,
             zIndex: this.props.zIndex,
             minHeight: this.props.minHeight,
-            cursor: this.props.cursor
+            cursor: this.props.cursor,
+            backgroundImage: this.props.backgroundImage,
+            backgroundRepeat: this.props.backgroundRepeat,
+            backgroundSize: this.props.backgroundSize
         }
 
         return (

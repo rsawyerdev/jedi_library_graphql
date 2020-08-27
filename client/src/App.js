@@ -8,6 +8,7 @@ import BookList from './containers/BookList'
 import Discussions from './containers/Discussions'
 import InsideLook from './containers/InsideLook'
 import Map from './containers/Map'
+import BooksLanding from './containers/BooksLanding'
 import BookDetails from './components/book/BookDetails'
 
 // apollo client setup
@@ -37,6 +38,7 @@ class App extends Component {
       <Route path = '/insidelook' exact component={InsideLook} />
       <Route path = '/map' exact component={Map} />
       <Route path = '/booklist/:bookId' exact component={BookDetails} />
+      <Route path = '/bookslanding' exact component={BooksLanding} />
       </BrowserRouter>
     </ApolloProvider>
   );
